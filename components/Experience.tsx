@@ -1,3 +1,4 @@
+import CompanyLogo from "./CompanyLogo";
 import Reveal from "./Reveal";
 
 type Role = {
@@ -11,6 +12,7 @@ type Role = {
 
 type CompanyGroup = {
   company: string;
+  logo: string;
   current?: boolean;
   roles: Role[];
 };
@@ -18,6 +20,7 @@ type CompanyGroup = {
 const groups: CompanyGroup[] = [
   {
     company: "Christian Dior Couture",
+    logo: "https://logo.clearbit.com/dior.com",
     current: true,
     roles: [
       {
@@ -36,6 +39,7 @@ const groups: CompanyGroup[] = [
   },
   {
     company: "Artefact",
+    logo: "https://logo.clearbit.com/artefact.com",
     roles: [
       {
         company: "Artefact",
@@ -51,6 +55,7 @@ const groups: CompanyGroup[] = [
   },
   {
     company: "The Estée Lauder Companies Inc.",
+    logo: "https://logo.clearbit.com/elcompanies.com",
     roles: [
       {
         company: "The Estée Lauder Companies Inc.",
@@ -68,6 +73,7 @@ const groups: CompanyGroup[] = [
   },
   {
     company: "IMPASTIAMO",
+    logo: "https://logo.clearbit.com/impastiamo.com",
     roles: [
       {
         company: "IMPASTIAMO",
@@ -85,6 +91,7 @@ const groups: CompanyGroup[] = [
   },
   {
     company: "Directions Group Inc",
+    logo: "https://logo.clearbit.com/directionsgroup.com.sg",
     roles: [
       {
         company: "Directions Group Inc",
@@ -115,15 +122,18 @@ export default function Experience() {
           {groups.map((group) => (
             <Reveal key={group.company}>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-[140px_1fr] md:gap-10">
-                <div className="md:pt-1">
-                  {group.current && (
-                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-champagne">
-                      Current Role
+                <div className="flex flex-row items-center gap-3 md:flex-col md:items-start md:gap-2 md:pt-1">
+                  <CompanyLogo src={group.logo} company={group.company} />
+                  <div>
+                    {group.current && (
+                      <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-champagne">
+                        Current Role
+                      </p>
+                    )}
+                    <p className="text-[12px] font-medium uppercase tracking-[0.12em] text-taupe">
+                      {group.roles[0].dates.split(" · ")[0]}
                     </p>
-                  )}
-                  <p className="text-[12px] font-medium uppercase tracking-[0.12em] text-taupe">
-                    {group.roles[0].dates.split(" · ")[0]}
-                  </p>
+                  </div>
                 </div>
 
                 <div>
