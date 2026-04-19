@@ -20,7 +20,7 @@ type CompanyGroup = {
 const groups: CompanyGroup[] = [
   {
     company: "Christian Dior Couture",
-    logo: "https://logo.clearbit.com/dior.com",
+    logo: "/logos/dior.png",
     current: true,
     roles: [
       {
@@ -39,7 +39,7 @@ const groups: CompanyGroup[] = [
   },
   {
     company: "Artefact",
-    logo: "https://logo.clearbit.com/artefact.com",
+    logo: "/logos/artefact.png",
     roles: [
       {
         company: "Artefact",
@@ -55,7 +55,7 @@ const groups: CompanyGroup[] = [
   },
   {
     company: "The Estée Lauder Companies Inc.",
-    logo: "https://logo.clearbit.com/elcompanies.com",
+    logo: "/logos/esteelauder.png",
     roles: [
       {
         company: "The Estée Lauder Companies Inc.",
@@ -73,7 +73,7 @@ const groups: CompanyGroup[] = [
   },
   {
     company: "IMPASTIAMO",
-    logo: "https://logo.clearbit.com/impastiamo.com",
+    logo: "/logos/impastiamo.png",
     roles: [
       {
         company: "IMPASTIAMO",
@@ -91,7 +91,7 @@ const groups: CompanyGroup[] = [
   },
   {
     company: "Directions Group Inc",
-    logo: "https://logo.clearbit.com/directionsgroup.com.sg",
+    logo: "/logos/directions.png",
     roles: [
       {
         company: "Directions Group Inc",
@@ -122,27 +122,28 @@ export default function Experience() {
           {groups.map((group) => (
             <Reveal key={group.company}>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-[140px_1fr] md:gap-10">
-                <div className="flex flex-row items-center gap-3 md:flex-col md:items-start md:gap-2 md:pt-1">
-                  <CompanyLogo src={group.logo} company={group.company} />
-                  <div>
-                    {group.current && (
-                      <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-champagne">
-                        Current Role
-                      </p>
-                    )}
-                    <p className="text-[12px] font-medium uppercase tracking-[0.12em] text-taupe">
-                      {group.roles[0].dates.split(" · ")[0]}
+                {/* Left rail: date only */}
+                <div className="md:pt-2">
+                  {group.current && (
+                    <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-champagne">
+                      Current Role
                     </p>
-                  </div>
+                  )}
+                  <p className="text-[12px] font-medium uppercase tracking-[0.12em] text-taupe">
+                    {group.roles[0].dates.split(" · ")[0]}
+                  </p>
                 </div>
 
+                {/* Right column: logo + company name inline, then roles */}
                 <div>
-                  <h3 className="font-serif text-[22px] text-ink md:text-[24px]">
-                    <span className="mr-2 inline-block h-1.5 w-1.5 -translate-y-1 rounded-full bg-champagne align-middle" />
-                    {group.company}
-                  </h3>
+                  <div className="flex items-center gap-3">
+                    <CompanyLogo src={group.logo} company={group.company} />
+                    <h3 className="font-serif text-[22px] text-ink md:text-[24px]">
+                      {group.company}
+                    </h3>
+                  </div>
 
-                  <div className="mt-6 space-y-8">
+                  <div className="mt-5 space-y-8">
                     {group.roles.map((role, idx) => (
                       <div key={idx}>
                         <p className="text-[16px] font-semibold text-ink md:text-[17px]">
